@@ -3,7 +3,6 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import {AppBar, makeStyles, Toolbar, Link} from '@material-ui/core';
 
 import HomePage from "../pages/HomePage";
-import AboutPage from "../pages/AboutPage";
 import "./MainNavigation.css";
 import {GitHub, Twitter} from "@material-ui/icons";
 
@@ -38,7 +37,6 @@ function MainNavigation(props) {
                             <Twitter fontSize={"large"}/>
                         </NavLink>
                         <MenuSpacer/>
-                        {/*<NavLink to="/about" className="navigation__link">About</NavLink>*/}
                         <Link href={GITHUB_URL} target="_blank" className={classes.icon}>
                             <GitHub/>
                         </Link>
