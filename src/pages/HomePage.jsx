@@ -10,10 +10,11 @@ import {
 import Button from "@material-ui/core/Button";
 import {setStep} from "../redux/actions/application";
 import {connect} from "react-redux";
-import FinishStep from "../components/FinishStep";
-import ImportStep from "../components/ImportStep";
-import ConfigurationStep from "../components/ConfigurationStep";
-import Notifications from "../components/Notifications";
+import FinishStep from "../containers/steps/FinishContainer";
+import ImportStep from "../containers/steps/ImportContainer";
+import ConfigurationContainer from "../containers/steps/ConfigurationContainer";
+import NotificationsContainer from "../containers/NotificationsContainer";
+import ProcessContainer from "../containers/steps/ProcessContainer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -49,12 +50,12 @@ const steps = [
     },
     {
         label: "Configuration",
-        component: <ConfigurationStep/>,
+        component: <ConfigurationContainer/>,
         hiddenInStepper: false
     },
     {
         label: "Process",
-        component: <div>Process</div>,
+        component: <ProcessContainer/>,
         hiddenInStepper: false
     },
     {
@@ -84,7 +85,7 @@ const LocalStepper = ({activeStep, steps}) => {
     )
 }
 
-const HomePage = ({activeStep, setActiveStep}) => {
+const HomePage = ({activeStep, rows, setActiveStep}) => {
     const classes = useStyles();
     const handleNext = () => {
         if (activeStep === steps.length) {
@@ -103,7 +104,7 @@ const HomePage = ({activeStep, setActiveStep}) => {
 
     return (
         <Container className={classes.root}>
-            <Notifications/>
+            <NotificationsContainer/>
 
             <LocalStepper activeStep={activeStep} steps={steps} className={classes.stepper}/>
 
@@ -120,7 +121,7 @@ const HomePage = ({activeStep, setActiveStep}) => {
                             Back
                         </Button>
                     )}
-                    {activeStep < (steps.length - 1) && (
+                    {rows.length > 0 && activeStep < (steps.length - 1) && (
                         <Button
                             variant="contained"
                             color="primary"
@@ -137,10 +138,11 @@ const HomePage = ({activeStep, setActiveStep}) => {
 
 
 const mapStateToProps = state => {
-    const {activeStep} = state.application;
+    const {activeStep, rows} = state.application;
 
     return {
-        activeStep
+        activeStep,
+        rows
     }
 }
 

@@ -1,11 +1,12 @@
 import React from "react";
 import {Button} from "@material-ui/core";
-import {fileToJSON, handleImport} from "../services/ImportService";
-import {addNotification} from "../redux/actions/notifications";
+import {fileToJSON, handleImport} from "../../services/ImportService";
+import {addNotification} from "../../redux/actions/notifications";
 import {connect} from "react-redux";
-import CsvTable from "./CsvTable";
-import {setRows} from "../redux/actions/application";
-const ImportStep = ({setRows, addNotification}) => {
+import {setRows} from "../../redux/actions/application";
+import CsvTableContainer from "../CsvTableContainer";
+
+const ImportContainer = ({setRows, addNotification}) => {
     const onFileChange = (e) => {
         handleImport(e, (file) => {
             fileToJSON(file, setRows);
@@ -22,7 +23,7 @@ const ImportStep = ({setRows, addNotification}) => {
                 <input type="file" accept="text/csv" hidden onChange={onFileChange}/>
             </Button>
 
-            <CsvTable/>
+            <CsvTableContainer/>
         </React.Fragment>
     )
 };
@@ -42,4 +43,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportStep);
+export default connect(mapStateToProps, mapDispatchToProps)(ImportContainer);

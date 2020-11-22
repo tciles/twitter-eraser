@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import {deleteNotification} from "../redux/actions/notifications";
-import Alert from "./Alert";
+import Alert from "../components/Alert";
 
-const Notifications = ({notifications, deleteNotification}) => {
+const NotificationsContainer = ({notifications, deleteNotification}) => {
     return (
         <React.Fragment>
             {notifications.map(notification => (
@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationsContainer);

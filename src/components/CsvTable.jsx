@@ -1,6 +1,5 @@
 import React from "react";
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell, TablePagination} from "@material-ui/core";
-import {connect} from "react-redux";
 
 const CsvTable = ({rows}) => {
     const [page, setPage] = React.useState(0);
@@ -27,13 +26,13 @@ const CsvTable = ({rows}) => {
                 <Table>
                     <TableHead style={{background: "#e4e4e4"}}>
                         <TableRow>
-                            {headers.map(header => <TableCell style={{fontWeight: "bold"}}>{header}</TableCell>)}
+                            {headers.map((header, index) => <TableCell key={index} style={{fontWeight: "bold"}}>{header}</TableCell>)}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {items.map((item, index) => (
                             <TableRow key={index}>
-                                {item.map(value => <TableCell>{value}</TableCell>)}
+                                {item.map((value, k) => <TableCell key={k}>{value}</TableCell>)}
                             </TableRow>
                         ))}
                     </TableBody>
@@ -52,12 +51,4 @@ const CsvTable = ({rows}) => {
     )
 }
 
-const mapStateToProps = state => {
-    const {rows} = state.application
-
-    return {
-        rows
-    }
-}
-
-export default connect(mapStateToProps)(CsvTable);
+export default CsvTable;
