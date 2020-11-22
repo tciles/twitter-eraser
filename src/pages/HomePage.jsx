@@ -1,12 +1,5 @@
 import React from "react";
-import {
-    makeStyles,
-    Container,
-    Paper,
-    Stepper,
-    Step,
-    StepLabel
-} from "@material-ui/core";
+import {makeStyles, Container, Paper, Stepper, Step, StepLabel} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {setStep} from "../redux/actions/application";
 import {connect} from "react-redux";

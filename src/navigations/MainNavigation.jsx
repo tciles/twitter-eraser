@@ -48,9 +48,6 @@ function MainNavigation(props) {
                 <Route path="/" exact={true}>
                     <HomePage/>
                 </Route>
-                <Route path="/about">
-                    <AboutPage/>
-                </Route>
             </Switch>
         </Router>
     );
