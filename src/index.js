@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux'
+import configureStore from './redux'
+
+import MainNavigation from './navigations/MainNavigation';
 import reportWebVitals from './reportWebVitals';
+import {ThemeProvider} from "@material-ui/core/styles";
+import theme from "./themes"
+import './index.css';
+
+const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <MainNavigation />
+        </ThemeProvider>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

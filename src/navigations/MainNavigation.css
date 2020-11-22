@@ -1,0 +1,26 @@
+.navigation__link {
+    color: #e4e4e4;
+    text-decoration: none;
+    padding: 0 8px;
+    position: relative;
+}
+
+.navigation__link.active {
+    color: #fff;
+}
+
+.navigation__link:after {
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 100%;
+    background: #fff;
+    left: 0;
+    bottom: 0;
+    transform: translateY(22px) scaleX(0);
+    transition: 0.125s;
+}
+
+.navigation__link.active:after {
+    transform: translateY(22px) scaleX(1);
+}
