@@ -6,7 +6,10 @@ const CsvTable = ({rows}) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const headers = rows[0];
-    const items = rows.slice(1).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    rows = rows.slice(1)
+    const start = page * rowsPerPage;
+    const end = start + rowsPerPage;
+    const items = rows.slice(start, end)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
