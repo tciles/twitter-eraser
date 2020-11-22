@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import FinishStep from "../components/FinishStep";
 import ImportStep from "../components/ImportStep";
 import ConfigurationStep from "../components/ConfigurationStep";
+import Notifications from "../components/Notifications";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,7 +27,6 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(3),
         padding: theme.spacing(2),
         [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-            marginTop: theme.spacing(6),
             marginBottom: theme.spacing(6),
             padding: theme.spacing(3),
         },
@@ -103,7 +103,10 @@ const HomePage = ({activeStep, setActiveStep}) => {
 
     return (
         <Container className={classes.root}>
+            <Notifications/>
+
             <LocalStepper activeStep={activeStep} steps={steps} className={classes.stepper}/>
+
             <main>
                 <Paper className={classes.paper}>
                     {getStepContent(activeStep)}

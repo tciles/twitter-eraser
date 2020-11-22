@@ -1,12 +1,11 @@
 import React from "react";
 import {Button} from "@material-ui/core";
-import Alert from "./Alert";
 import {fileToJSON, handleImport} from "../services/ImportService";
-import {addNotification, deleteNotification} from "../redux/actions/notifications";
+import {addNotification} from "../redux/actions/notifications";
 import {connect} from "react-redux";
 import CsvTable from "./CsvTable";
 import {setRows} from "../redux/actions/application";
-const ImportStep = ({setRows, notifications, addNotification, deleteNotification}) => {
+const ImportStep = ({setRows, addNotification}) => {
     const onFileChange = (e) => {
         handleImport(e, (file) => {
             fileToJSON(file, setRows);
@@ -18,10 +17,6 @@ const ImportStep = ({setRows, notifications, addNotification, deleteNotification
 
     return (
         <React.Fragment>
-            {notifications.map(notification => (
-                <Alert {...notification} key={notification.id} onClick={() => { deleteNotification(notification.id); }}/>
-            ))}
-
             <Button variant="contained" component="label">
                 Upload File (.csv)
                 <input type="file" accept="text/csv" hidden onChange={onFileChange}/>
@@ -43,7 +38,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addNotification: (type, text) => dispatch(addNotification(type, text)),
-        deleteNotification: (id) => dispatch(deleteNotification(id)),
         setRows: (rows) => dispatch(setRows(rows))
     }
 }
