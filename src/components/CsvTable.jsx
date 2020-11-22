@@ -1,5 +1,6 @@
 import React from "react";
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell, TablePagination} from "@material-ui/core";
+import {CheckCircleOutline} from "@material-ui/icons";
 
 const CsvTable = ({rows}) => {
     const [page, setPage] = React.useState(0);
@@ -32,7 +33,14 @@ const CsvTable = ({rows}) => {
                     <TableBody>
                         {items.map((item, index) => (
                             <TableRow key={index}>
-                                {item.map((value, k) => <TableCell key={k}>{value}</TableCell>)}
+                                {item.map((value, k) => {
+                                    if (k === 0) {
+                                        const color = value === 0 ? "#ccc" : "#1bd07b"
+                                        value = <CheckCircleOutline style={{color}}/>
+                                    }
+
+                                    return <TableCell key={k}>{value}</TableCell>
+                                })}
                             </TableRow>
                         ))}
                     </TableBody>

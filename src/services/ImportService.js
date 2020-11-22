@@ -41,7 +41,10 @@ export const fileToJSON = (file, ok, ko) => {
     Papa.parse(file, {
         worker: true,
         step: (results) => {
-            rows.push(results.data);
+            rows.push([
+                rows.length === 0 ? "Sync" : 0,
+                ...results.data,
+            ]);
         },
         complete: (results) => {
             ok(rows)
